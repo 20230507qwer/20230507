@@ -13,7 +13,7 @@ void LCS(string &a, string &b)
 			if (a[i] == b[j])
 				dp[i][j] = dp[i - 1][j - 1] + 1;
 			else
-				dp[i][j] = max(dp[i][j - 1], dp[i - 1][j]);//如果a[i]!=b[j] 那么抛弃a[i]或者b[j],取两者较大值
+				dp[i][j] = max(dp[i][j - 1], dp[i - 1][j]);//如果a[i]!=b[j] 那么舍弃a[i]或者b[j],取两者较大值
 		}
 	}
 	cout << dp[a.length()][b.length()] << endl;
