@@ -1,0 +1,51 @@
+#include<iostream>
+#include<algorithm>
+#include<cstring>
+#include<vector>
+#include<cmath>
+using namespace std;
+int mp[100];
+int cnt;
+void dfs(int n,int arr[],int cur)
+{
+	if (cur == n){
+		cnt++;
+	}
+	else{
+		for (int i = 1; i <= n; i++){
+			bool flag = false;
+			if (!mp[i]){
+				mp[i] = 1;
+				arr[cur] = i;
+				if (cur >= 1) {
+					for (int j = 0; j < cur; j++) {
+						if (abs(arr[cur] - arr[j]) == abs(cur - j)) {
+							flag = true;
+							break;
+						}
+					}
+				}
+				if (!flag) {
+					dfs(n, arr, cur + 1);
+				}
+					mp[i] = 0;
+
+			}
+		}
+	}
+}
+
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		int arr[100];
+		dfs(n, arr, 0);
+		cout << cnt << endl;
+		cnt = 0;
+	}
+	return 0;
+}
